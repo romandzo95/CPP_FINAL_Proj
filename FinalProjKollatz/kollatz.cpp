@@ -10,6 +10,9 @@ KollatzRes KollatzFunc(unsigned long long n, std::atomic<bool>& stopFlag)
 {
     constexpr unsigned long long LIMIT = (std::numeric_limits<unsigned long long>::max() - 1) / 3;
     KollatzRes result{0, 0};
+    if(n==1){
+        return {1, 1};
+    }
     while(true){
         unsigned long long start = globalCounter.fetch_add(CHUNK_SIZE);
         if (start>n){
